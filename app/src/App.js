@@ -1,29 +1,29 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "reactstrap";
 import CategoryList from "./CategoryList";
 import ProductList from "./ProductList";
 import Navi from "./Navi";
-import alertify from "alertifyjs";
-import { Switch, Route } from "react-router-dom";
 import CartList from "./CartList";
 import NotFound from "./NotFound";
+import { Container, Row, Col } from "reactstrap";
+import alertify from "alertifyjs";
+import { Switch, Route } from "react-router-dom";
 
 export default class App extends Component {
   state = { currentCategory: "All", products: [], cart: [] };
+
+  changeCategory = (category) => {
+    this.setState({ currentCategory: category.name });
+    this.getProducts(category);
+  };
 
   componentDidMount() {
     this.getProducts();
   }
 
-  changeCategory = (category) => {
-    this.setState({ currentCategory: category.categoryName });
-    this.getProducts(category.id);
-  };
-
-  getProducts = (categoryId) => {
-    let url = "http://localhost:3000/products";
-    if (categoryId) {
-      url += "?categoryId=" + categoryId;
+  getProducts = (category) => {
+    let url = "https://northwind.vercel.app/api/products";
+    if (category) {
+      url += "?categoryId=" + category.id;
     }
     fetch(url)
       .then((response) => response.json())
@@ -39,13 +39,13 @@ export default class App extends Component {
       newCart.push({ product: product, quantity: 1 });
     }
     this.setState({ cart: newCart });
-    alertify.success(product.productName + " added to cart!", 2);
+    alertify.success(product.name + " added to cart!", 2);
   };
 
   removeFromCart = (product) => {
     let newCart = this.state.cart.filter((p) => p.product.id !== product.id);
     this.setState({ cart: newCart });
-    alertify.error(product.productName + " removed from cart!", 2);
+    alertify.error(product.name + " removed from cart!", 2);
   };
 
   render() {
@@ -74,8 +74,7 @@ export default class App extends Component {
                   />
                 </Col>
               </Route>
-
-              <Route path="/cart">
+              <Route exact path="/cart">
                 <Col xs="12">
                   <CartList
                     cart={this.state.cart}
@@ -84,7 +83,7 @@ export default class App extends Component {
                 </Col>
               </Route>
 
-              <Route path="">
+              <Route>
                 <Col xs="12">
                   <NotFound />
                 </Col>
