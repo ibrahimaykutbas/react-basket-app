@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import {
+  Nav,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
   NavbarText,
   Badge,
-  Button,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
@@ -14,29 +14,31 @@ export default class CartSummary extends Component {
   renderSummary() {
     return (
       <div>
-        <UncontrolledDropdown nav inNavbar>
-          <DropdownToggle nav caret>
-            Cart
-          </DropdownToggle>
-          <DropdownMenu right>
-            {this.props.cart.map((cartItem) => (
-              <DropdownItem key={cartItem.product.id}>
-                {cartItem.product.productName}{" "}
-                <Badge color="primary">{cartItem.quantity}</Badge>{" "}
-                <Badge
-                  color="danger"
-                  onClick={() => this.props.removeFromCart(cartItem.product)}
-                >
-                  X
-                </Badge>
+        <Nav navbar>
+          <UncontrolledDropdown nav inNavbar>
+            <DropdownToggle nav caret>
+              Cart
+            </DropdownToggle>
+            <DropdownMenu right>
+              {this.props.cart.map((cartItem) => (
+                <DropdownItem key={cartItem.product.id}>
+                  {cartItem.product.name}{" "}
+                  <Badge color="info">{cartItem.quantity}</Badge>{" "}
+                  <Badge
+                    color="danger"
+                    onClick={() => this.props.removeFromCart(cartItem.product)}
+                  >
+                    X
+                  </Badge>
+                </DropdownItem>
+              ))}
+              <DropdownItem divider />
+              <DropdownItem>
+                <Link to="/cart">Go to cart</Link>
               </DropdownItem>
-            ))}
-            <DropdownItem divider />
-            <DropdownItem>
-              <Link to="cart">Go to cart</Link>
-            </DropdownItem>
-          </DropdownMenu>
-        </UncontrolledDropdown>
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        </Nav>
       </div>
     );
   }
@@ -44,11 +46,7 @@ export default class CartSummary extends Component {
   renderEmpty() {
     return (
       <div>
-        <NavbarText>
-          <Button color="danger" outline>
-            Empty List
-          </Button>
-        </NavbarText>
+        <NavbarText>Empty List</NavbarText>
       </div>
     );
   }
