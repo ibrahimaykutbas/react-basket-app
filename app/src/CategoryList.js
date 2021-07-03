@@ -9,7 +9,8 @@ export default class CategoryList extends Component {
   }
 
   getCategories = () => {
-    fetch("http://localhost:3000/categories")
+    let url = "https://northwind.vercel.app/api/categories";
+    fetch(url)
       .then((response) => response.json())
       .then((data) => this.setState({ categories: data }));
   };
@@ -17,22 +18,19 @@ export default class CategoryList extends Component {
   render() {
     return (
       <div>
-        <Badge color="primary" pill>
-          <h4>{this.props.info.title}</h4>
-        </Badge>{" "}
-        <br /> <br />
+        <h2>
+          <Badge color="primary">{this.props.info.title}</Badge>
+        </h2>
         <ListGroup>
           {this.state.categories.map((category) => (
             <ListGroupItem
               key={category.id}
               onClick={() => this.props.changeCategory(category)}
               active={
-                this.props.currentCategory === category.categoryName
-                  ? true
-                  : false
+                this.props.currentCategory === category.name ? true : false
               }
             >
-              {category.categoryName}
+              {category.name}
             </ListGroupItem>
           ))}
         </ListGroup>
