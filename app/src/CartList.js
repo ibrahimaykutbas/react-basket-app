@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Table, Button } from "reactstrap";
+import { Table, Button, Badge } from "reactstrap";
+import alertify from "alertifyjs";
 
 export default class CartList extends Component {
-  renderList() {
+  renderCartList() {
     return (
       <tbody>
         {this.props.cart.map((cartItem) => (
@@ -10,7 +11,23 @@ export default class CartList extends Component {
             <th scope="row">{cartItem.product.id}</th>
             <td>{cartItem.product.name}</td>
             <td>{cartItem.product.unitPrice}</td>
-            <td>{cartItem.quantity}</td>
+            <td>
+              {cartItem.quantity}{" "}
+              <Button
+                size="sm"
+                color="primary"
+                onClick={() => this.props.increaseTheProduct(cartItem.product)}
+              >
+                +
+              </Button>{" "}
+              <Button
+                size="sm"
+                color="danger"
+                onClick={() => this.props.reduceProduct(cartItem.product)}
+              >
+                -
+              </Button>
+            </td>
             <td>{cartItem.product.unitPrice * cartItem.quantity}</td>
             <td>
               <Button
@@ -27,7 +44,7 @@ export default class CartList extends Component {
     );
   }
 
-  renderEmpty() {
+  renderEmptyList() {
     return (
       <tbody>
         <tr>
@@ -50,10 +67,12 @@ export default class CartList extends Component {
               <th>Unit Price</th>
               <th>Quantity</th>
               <th>Total Line</th>
-              <td></td>
+              <th></th>
             </tr>
           </thead>
-          {this.props.cart.length > 0 ? this.renderList() : this.renderEmpty()}
+          {this.props.cart.length > 0
+            ? this.renderCartList()
+            : this.renderEmptyList()}
         </Table>
       </div>
     );
