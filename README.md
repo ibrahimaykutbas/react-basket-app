@@ -17,7 +17,7 @@ In the project directory, you can run: <br/><br/>
 Runs the app in the development mode.<br/><br/>
 `http://localhost:3000`<br/>
 ## API
-API used: Northwind <br/><br/>
+API used: Northwind <br/>
 ## Learn More
 You can learn more in the [Create React App documentation](https://create-react-app.dev/docs/getting-started/).<br/><br/>
 To learn React, check out the [React documentation](https://reactjs.org/).
