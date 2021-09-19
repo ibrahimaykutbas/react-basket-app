@@ -1,5 +1,4 @@
 # Basket Application
-Listing categories and products using the Northwind API with ReactJs, filtering products by selected category, adding and deleting products to cart and cart summary app.<br>
 Project: https://northwind-app-db0c4.web.app/
 ## Built With
 ReactJS<br/>
