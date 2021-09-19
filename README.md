@@ -4,18 +4,18 @@ Project: https://northwind-app-db0c4.web.app/
 ## Built With
 ReactJS<br/>
 ## Tools
-** Reactstrap
-** Bootstrap
-** React Router DOM
-** Alertifyjs
-** Json Server
+- Reactstrap
+- Bootstrap
+- React Router DOM
+- Alertifyjs
+- Json Server
 ## Features
-** List the products. Filter by selected category.
-** Add product to cart if there is a product in stock.
-** If there is no product in stock, the button is not active.
-** Pagination with React Router.
-** To be able to see the basket summary on every desired page.
-** Seeing the information and quantity of the product added on the cart page.
+- List the products. Filter by selected category.
+- Add product to cart if there is a product in stock.
+- If there is no product in stock, the button is not active.
+- Pagination with React Router.
+- To be able to see the basket summary on every desired page.
+- Seeing the information and quantity of the product added on the cart page.
 ## API
 API used: Northwind <br/>
 ## Getting Started
