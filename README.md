@@ -4,11 +4,11 @@ Project: https://northwind-app-db0c4.web.app/
 ## Built With
 ReactJS<br/>
 ## Tools
-**Reactstrap
-**Bootstrap
-**React Router DOM
-**Alertifyjs
-**Json Server
+** Reactstrap
+** Bootstrap
+** React Router DOM
+** Alertifyjs
+** Json Server
 ## Features
 ** List the products. Filter by selected category.
 ** Add product to cart if there is a product in stock.
